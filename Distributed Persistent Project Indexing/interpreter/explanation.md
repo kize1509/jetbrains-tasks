@@ -38,7 +38,7 @@
     - Input is first parsed and the executed separately.
     - This approach is more suitable for larger inputs or more complex syntax structures.
 
-### Stack-based solution
+### Stack-based solution [stack-solution](./stack-solution/)
 
 Chosen for its simplicity and intuitive workflow similar to already existing computer science concepts.
 
@@ -56,3 +56,27 @@ For this specific problem, it is easier to understand and implement a solution w
 
 - **Immediate execution**:  
 Commands are executed as they are parsed. Allowing for reduced memory usage and fast feedback.
+
+
+### Decoupled Parsing and Execution [tree-solutiuon](./tree-solution/)
+
+The decoupled approach offers a more modular and scalable solution, dividing the process into two distinct phases: parsing and execution.
+
+#### Characteristics
+
+- **Parsing Phase**:
+        The input code is analyzed and converted into a tree-like structure, with nodes representing language constructs.
+        This step involves identifying and categorizing each statement (e.g., variable assignments, print commands, or scope definitions).
+        A ScopeNode serves as the root of the tree, containing child nodes for variables, print commands, and nested scopes.
+
+- **Execution Phase**:
+        The constructed tree is traversed, and each node is executed in sequence.
+        Execution follows the logical flow defined by the tree structure, ensuring correct scoping and variable handling.
+
+#### Advantages
+
+- **Scalability**:
+    The separation of parsing and execution makes it easier to extend the interpreter with additional features or more complex syntax.
+
+- **Debugging and Optimization**:
+    The intermediate tree structure makes it easier to debug, analyze, or optimize the code before execution.
