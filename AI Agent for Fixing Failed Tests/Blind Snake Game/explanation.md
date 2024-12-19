@@ -22,34 +22,29 @@
 
 # Problem Formulation
 
-- Key feature missing, current position. 
-- The current position is the key to solving the problem.
-- If the current position is known, the problem is a simple path finding problem, which can be implemented in O(S) time complexity.
-- Since the current position is missing, we don't have a guarantee that there will not be redundant position visits.
+- Missing current position feature and that implies that none of the Graph Search algorithms can be used.
+- The problem is a blind search problem.
+- No efficient algorithm can be used to solve the problem.
+- Each solution step count depends on the grid size, goal position, and the initial player position.
+- Approach used is a straightforward *right - down walk* further explained in the solution section.
+
+# Solution
+
+- Solution is a simple yet effective approach.
+- When exploring a grid or matrix with rotation feature (torodial grid), we want to explore each row and column.
+- And while exploring rows or columns in an incremental step fashion we usually get stuck in a loop.
+- Since we do not have information on A nor B, walk consists of prime number of steps in right and down direction.
+- The walk is called a *right - down walk*.
+- Each new sequence of steps is a prime number. With growing primes, we lower the chance of repeating the same position in the grid.
+- In this process we are able to cover the whole grid, but looping is not excluded since we do not have information on the grid size, only cycle length enlargment is possible.
+- To prevent looping or exit loops, after a certain number of steps we perform an additional step in the opposite direction.
+- With this approach we secure that the exploration of the grid/finding the apple is done in approximately 15 * S steps. (tested on 12000 random grids with random apple positions and radnom starting positions, grid dimensions range A : 1 - 1000000 ; B : 1 - 1000000 ; A * B < 10^6)
 
 
-# Problem Solution
+# Code explanation
 
-- Initial idea is to perform a systematic search.
-- The search will be a spiral search.
-
-- Solution problems:
-    - No time guarantee.
-    - Possible redundant position visits.
-    - Some grid sizes may not be solvable even in S^2 steps. 
-    - For example in a 1x1000000 grid, the snake will cover small portion of the grid in 35xS steps.
-    - This fenomenon occurs solely because of the torodial grid property and the lack of current position information which does not allow us to track visited positions.
-
-
-- Addition to the solution:
-    - Including a random/probabilistic component to the search.
-    - This is just one possible solution.
-    - While exploring the grid systematically, the snake will also make random moves after finishing a cycle of 5xS.
-    - Then 3 random moves will be made to increase the chance of escaping the redundant cycles.
-
-- The solution is not guaranteed to find the goal state in all cases.
-- The solution is not guaranteed to find the goal state in a certain time.
-- Solution is optimized for grids in varying dimensions of (100-1000)x(100-1000).
-- Number of steps in solution for grids such as 1x1000000 is solely based on the initial position beacause of the exploring algorithm nature.
-- Systematic search guarantees to explore the entire grid, but in a more time consuming manner.
-- Random moves are added to increase the chance of finding the goal state in a reasonable time.
+- Code provided is a test sample.
+- Main method is *traverse* method.
+- Methods used are *move_right*, *move_down*, *move_up*. Each method handles the wrapping of the grid.
+- During the traversal, none of the grid dimensions is used.
+- All of the excess parameters and methods are used for testing purposes. Such as randomization of the grid, apple position, and player position.
