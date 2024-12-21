@@ -24,14 +24,14 @@
 
 - Missing current position feature and that implies that none of the Graph Search algorithms can be used.
 - The problem is a blind search problem.
-- No efficient algorithm can be used to solve the problem.
+- No uniformally efficient algorithm can be used.
 - Each solution step count depends on the grid size, goal position, and the initial player position.
 - Approach used is a straightforward *right - down walk* further explained in the solution section.
 
 # Solution
 
 - Solution is a simple yet effective approach.
-- When exploring a grid or matrix with rotation feature (torodial grid), we want to explore each row and column.
+- When exploring a grid or matrix with rotation (wrapping) feature (torodial grid), we want to explore each row and column.
 - And while exploring rows or columns in an incremental step fashion we usually get stuck in a loop.
 - Since we do not have information on A nor B, walk consists of prime number of steps in right and down direction.
 - The walk is called a *right - down walk*.
@@ -39,7 +39,7 @@
 - In this process we are able to cover the whole grid, but looping is not excluded since we do not have information on the grid size, only cycle length enlargment is possible.
 - To prevent looping or exit loops, after a certain number of steps we perform an additional step in the opposite direction.
 - With this approach we secure that the exploration of the grid/finding the apple is done in approximately 15 * S steps. (tested on 12000 random grids with random apple positions and radnom starting positions, grid dimensions range A : 1 - 1000000 ; B : 1 - 1000000 ; A * B < 10^6)
-
+- The initial solution idea came from the CRT (Chinese Remainder Theorem), where positions inside of the grid  are rarely repeated in the same cycle, and that is why step sizes are prime numbers. The final solution does not use the CRT in full potential, but the idea is somewhat similar. 
 
 # Code explanation
 
@@ -48,3 +48,5 @@
 - Methods used are *move_right*, *move_down*, *move_up*. Each method handles the wrapping of the grid.
 - During the traversal, none of the grid dimensions is used.
 - All of the excess parameters and methods are used for testing purposes. Such as randomization of the grid, apple position, and player position.
+- ADDITION: in the task text, dimensions of the grid are A(width) and B(height) but in the test example it is the other way around.  
+[CODE](./main.py)

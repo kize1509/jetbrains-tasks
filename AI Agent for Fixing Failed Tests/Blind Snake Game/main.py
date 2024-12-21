@@ -132,11 +132,10 @@ if __name__ == '__main__':
             res = int(game.k//game.S)
             if res > highest:
                 highest = res
-            print(res)
         else:
             print(game.A, game.B, game.S)   
             print("Failed")
 
     print("Passed: ", passed, " out of 10")
-    print("Highest: ", highest)
+    print("Highest step count (x * S); x: ", highest)
 
