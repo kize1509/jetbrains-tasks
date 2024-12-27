@@ -21,7 +21,7 @@
 - Connect to remote and local databases
 - Select dbs, schemas, tables and columns to synchronize
 - Schedule synchronization tasks
-- Monitor synchronization progress
+- Perform continuous synchronization or single synchronization
 
 
 ## Technology Stack
@@ -163,3 +163,26 @@
   - Useful paper on the topic is [Efficient Synchronization of State-based CRDTs](https://arxiv.org/pdf/1803.02750)
 - Also a paper that gave me deeper understanding of data analysis and comparison is [COMPARE: Accelerating Groupwise Comparison in Relational Databases for Data Analytics (Extended Version)](https://arxiv.org/pdf/2107.11967)
 - Solution provided might not satisfy DBMSs that are not SQL based, but surely it can be built upon to support other DBMSs.
+
+
+# Problems to overcome
+
+## Over-reliance on DataGrip functionality
+- Currently, I have no extensive knowledge of DataGrip SDK, so I might over-rely on the existing functionality of DataGrip.
+- Also, using already implemented tools as a base migth introduce some limitations to the tool.
+
+## Multi-Database support
+- Since current MVP is designed to work script-based, it sets limitaions to the tool in terms of multi-database support.
+- This issue can be resolved by introducing abstraction layer that will handle the differences.
+
+## Scalability concerns
+- When implementing a tool/agent on top of the existing product that is widely used, we need to consider the scalability of the tool.
+- Goals of the tool and its distribution should be considered when designing the tool, and available metrics should be used to implement teh baseline solution.
+
+## Security concerns
+- When relying on script-execution based sync, we need to find a way to secure the data that is being transferred.
+- Potential solutions may require encryption of the data, or using secure channels for data transfer.
+
+## Optimizing the data comparison
+- Since the data comparison is the most time-consuming part of the synchronization process, we need to find a way to optimize this process.
+- Proposed solution is a baseline solution, since there is not much information on data available from the current diffing process.
